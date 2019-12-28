@@ -1,0 +1,50 @@
+<p><button type="button" class="btn btn-primary fa fa-refresh" style="float: right;"></button></p>
+<d-datatable #tableRef [gridData]="data" [pageSize]="3" [height]="'40vh'" [gridTitle]="'Machine List'">
+   
+    <d-column [label]="'Machine Name'" [dataKey]="'machineName'">
+    </d-column>
+    <d-column [label]="'Status'" [dataKey]="'machineStatus'" ></d-column>
+    <d-column [label]="'Refersh'" [dataKey]="''" [width]="'30px'">
+        <ng-template #columnTemplate let-row="row">
+            <i class="fa fa-refresh"></i>
+        </ng-template>
+    </d-column>
+    <d-column [label]="'Details'" [dataKey]="''" [width]="'40px'">
+        <ng-template #columnTemplate let-row="row">
+            <i class="fa fa-edit" data-toggle="modal"  (click)="showModal()"></i>
+        </ng-template>
+    </d-column>
+</d-datatable>
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Machine Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h1>sadadad</h1>
+
+            <h1>sadadad</h1>
+            <h1>sadadad</h1>
+            <h1>sadadad</h1>
+            <h1>sadadad</h1>
+
+
+
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>

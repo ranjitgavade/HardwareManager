@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HardwareManager';
+  constructor(private _router: Router) {
+
+  }
+
+  routerhandle(router: string) {
+    this._router.navigate([router]);
+  }
 }
