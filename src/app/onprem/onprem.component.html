@@ -1,8 +1,9 @@
+
+<button id="abc1" onclick="abc()">test</button>
 <p><button type="button" class="btn btn-primary fa fa-refresh" style="float: right;"></button></p>
-<d-datatable #tableRef [gridData]="data" [pageSize]="3" [height]="'40vh'" [gridTitle]="'Machine List'">
+<d-datatable #tableRef [gridData]="data" [pageSize]="7" [height]="'40vh'" [gridTitle]="'Machine List'">
    
-    <d-column [label]="'Machine Name'" [dataKey]="'machineName'">
-    </d-column>
+    <d-column [label]="'Machine Name'" [dataKey]="'machineName'"></d-column>
     <d-column [label]="'Status'" [dataKey]="'machineStatus'" ></d-column>
     <d-column [label]="'Refersh'" [dataKey]="''" [width]="'30px'">
         <ng-template #columnTemplate let-row="row">
@@ -30,16 +31,13 @@
           </button>
         </div>
         <div class="modal-body">
-            <h1>sadadad</h1>
+            <h4>Host Name</h4>
 
-            <h1>sadadad</h1>
-            <h1>sadadad</h1>
-            <h1>sadadad</h1>
-            <h1>sadadad</h1>
-
-
- 
-          ...
+            <h6>Owner</h6>
+            <h6>Username</h6>
+            <h6>Password</h6>
+            <h6>Bundle Loaded</h6>
+            <h6 >Configuration Type:</h6>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
