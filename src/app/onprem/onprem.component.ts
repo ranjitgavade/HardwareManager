@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import Ping from 'ping.js';
 declare var require: any;
 var ping = require('ping');
+var sys = require('sys')
 
+var exec = require('child_process')
 //var ping = require ("net-ping");
 /*const ranges = [
   '192.168.0.123',
@@ -129,15 +131,19 @@ session: any;
       console.log(ds.status);
   });*/
 
-  var hosts = ['192.168.1.1', 'google.com', 'yahoo.com'];
-hosts.forEach(function(host){
-    ping.sys.probe(host, function(isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-        console.log(msg);
-    });
-});
+  /*var hosts = ['192.168.1.1', 'google.com', 'yahoo.com'];
+ 
+hosts.forEach(function (host) {
+    ping.promise.probe(host)
+        .then(function (res) {
+            console.log(res);
+        });
+});*/
 
-   
+
+function puts(error, stdout, stderr) { sys.puts(stdout) }
+exec("ping -c 3 localhost", puts);
+
   }
 
   showModal():void {
