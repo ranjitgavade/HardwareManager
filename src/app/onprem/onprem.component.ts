@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 declare var require: any;
 var ping = require("ping");
 
@@ -12,7 +13,7 @@ export class OnpremComponent implements OnInit {
   data: any;
   session: any;
 
-  constructor() {
+  constructor(private _httpClient: HttpClient) {
     this.data = [
       {
         machineName: "pwdcsv-inspub1",
@@ -97,43 +98,21 @@ export class OnpremComponent implements OnInit {
     ];
   }
 
-  ngOnInit() {
-    var hosts = ["192.168.1.1", "google.com", "yahoo.com"];
-    hosts.forEach(function(host) {
-      debugger;
-      ping.promise.probe(host).then(function(res) {
-        console.log(res);
-      });
-    });
-
-    /*var p = new Ping();
-    p.ping('127.0.0.1', function(err, data) {
-      // Also display error if err is returned.
-      debugger;
-      if (err) {
-        console.log("error loading resource")
-        data = data + " " + err;
-      }
-      document.getElementById("ping-github").innerHTML = data;
-    });*/
-    /*const subnetPinger = new SubnetsPinger(ranges);
-    subnetPinger.on('host:alive', ip => {
-      console.log('alive', ip);
-    });*/
-    /*ds("127.0.0.1").on("change", function (host, status) {
-      console.log(ds.status);
-  });*/
-    /*var hosts = ['192.168.1.1', 'google.com', 'yahoo.com'];
-
-hosts.forEach(function (host) {
-    ping.promise.probe(host)
-        .then(function (res) {
-            console.log(res);
-        });
-});*/
-  }
+  ngOnInit() {}
 
   showModal(): void {
     $("#myModal").modal("show");
+  }
+
+  testApi() {
+    const ip = "127.0.0.1";
+    this._httpClient
+      .get(
+        "http://localhost:8083/HarwareManagerServer/rest/GetExampleService/machine/" +
+          ip
+      )
+      .subscribe(res => {
+        console.log(res);
+      });
   }
 }
