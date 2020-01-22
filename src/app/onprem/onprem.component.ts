@@ -2,8 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { SERVICE_URL } from "../constants/service.constant";
 import { MachineModel } from "../models/machine.model";
-declare var require: any;
-var ping = require("ping");
 
 declare var $: any;
 @Component({
@@ -15,11 +13,14 @@ export class OnpremComponent implements OnInit {
   data: any;
   session: any;
 
-  machineDetail = null;
+  isUpdateMode = false;
+
+  machineDetail : MachineModel;
 
   constructor(private _httpClient: HttpClient) {}
 
   ngOnInit() {
+    this.machineDetail=new MachineModel();
     this.getMachineList();
   }
 
@@ -31,20 +32,28 @@ export class OnpremComponent implements OnInit {
       });
   }
 
+  addMachineHandle() {
+    $("#myModal").modal("show");
+    this.isUpdateMode = false;
+    this.machineDetail = new MachineModel();
+  }
+
   showModal(row: any): void {
     $("#myModal").modal("show");
+    this.isUpdateMode = true;
     this.machineDetail = JSON.parse(JSON.stringify(row));
   }
 
-  testApi() {
-    const ip = "127.0.0.1";
-    this._httpClient
-      .get(
-        "http://localhost:8083/HarwareManagerServer/rest/GetExampleService/machine/" +
-          ip
-      )
-      .subscribe(res => {
-        console.log(res);
-      });
+
+  updateMachinedetailsHandle(){
+    this._httpClient.post(SERVICE_URL.post_update_machine_details,this.machineDetail).subscribe(res=>{
+      console.log("updated");
+    })
+  }
+
+  createMachinedetailsHandle(){
+    this._httpClient.post(SERVICE_URL.post_create_machine_details,this.machineDetail).subscribe(res=>{
+      console.log("created");
+    })
   }
 }

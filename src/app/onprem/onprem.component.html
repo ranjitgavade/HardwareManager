@@ -1,9 +1,13 @@
-<button id="abc1" (click)="testApi()">test</button>
-<p>
+
+<p style="float: right; ">
+  <button
+    type="button"
+    class="btn btn-primary fa fa-plus"
+    (click)="addMachineHandle()"
+  ></button> &nbsp;
   <button
     type="button"
     class="btn btn-primary fa fa-refresh"
-    style="float: right;"
   ></button>
 </p>
 <d-datatable
@@ -68,13 +72,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <machine-form [data]="machineDetail"></machine-form>
+        <machine-form [data]="machineDetail" [isUpdateMode]="isUpdateMode"></machine-form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary">Update</button>
+        <ng-container *ngIf="isUpdateMode">
+          <button type="button" class="btn btn-primary" (click)="updateMachinedetailsHandle()">Update</button>
+        </ng-container>
+        <ng-container *ngIf="!isUpdateMode">
+          <button type="button" class="btn btn-primary" (click)="createMachinedetailsHandle()">Create</button>
+        </ng-container>
       </div>
     </div>
   </div>

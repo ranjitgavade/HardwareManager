@@ -10,5 +10,7 @@ declare var $: any;
 export class MachineFormComponent implements OnInit {
   @Input() data: MachineModel;
 
+  @Input() isUpdateMode;
+
   ngOnInit(): void {}
 }
