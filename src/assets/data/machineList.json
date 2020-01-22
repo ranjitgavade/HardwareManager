@@ -1,0 +1,32 @@
+[
+  {
+    "id": "5e2864fe0e5cdc292f838a8e",
+    "machineName": "db14",
+    "status": "down",
+    "hostName": "abc",
+    "downPeriod": "0",
+    "machineUserName": "rg",
+    "currentOwner": "rg",
+    "os": "windows",
+    "ram": "32",
+    "cpuCores": "4",
+    "diskSize": "300",
+    "vsphereClient": "qyuweyui",
+    "userName": "rg"
+  },
+  {
+    "id": "5e2864fe0e5cdc292f838a8e",
+    "machineName": "db14",
+    "status": "down",
+    "hostName": "abc",
+    "downPeriod": "0",
+    "machineUserName": "rg",
+    "currentOwner": "rg",
+    "os": "windows",
+    "ram": "32",
+    "cpuCores": "4",
+    "diskSize": "300",
+    "vsphereClient": "qyuweyui",
+    "userName": "rg"
+  }
+]

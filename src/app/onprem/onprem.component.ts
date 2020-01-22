@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { SERVICE_URL } from "../constants/service.constant";
+import { MachineModel } from "../models/machine.model";
 declare var require: any;
 var ping = require("ping");
 
@@ -13,95 +15,25 @@ export class OnpremComponent implements OnInit {
   data: any;
   session: any;
 
-  constructor(private _httpClient: HttpClient) {
-    this.data = [
-      {
-        machineName: "pwdcsv-inspub1",
-        machineStatus: "ON"
-      },
-      {
-        machineName: "pwdcsv-insview1",
-        machineStatus: "OFF"
-      },
-      {
-        machineName: "pwdcsv-insdb1",
-        machineStatus: "ON"
-      },
-      {
-        machineName: "pwdcsv-insview2",
-        machineStatus: "OFF"
-      },
-      {
-        machineName: "pwdcsv-inspub2",
-        machineStatus: "ON"
-      },
-      {
-        machineName: "pwdcsv-insview3",
-        machineStatus: "OFF"
-      },
-      {
-        machineName: "pwdcsv-inspub3",
-        machineStatus: "ON"
-      },
-      {
-        machineName: "pwdcsv-insview4",
-        machineStatus: "OFF"
-      },
-      {
-        machineName: "pwdcsv-inspub4",
-        machineStatus: "ON"
-      },
-      {
-        machineName: "pwdcsv-insview5",
-        machineStatus: "OFF"
-      },
-      {
-        machineName: "pwdcsv-inspub5",
-        machineStatus: "ON"
-      },
-      {
-        machineName: "pwdcsv-insview6",
-        machineStatus: "OFF"
-      },
-      {
-        machineName: "pwdcsv-inspub6",
-        machineStatus: "ON"
-      },
-      {
-        machineName: "pwdcsv-insview7",
-        machineStatus: "OFF"
-      },
-      {
-        machineName: "pwdcsv-inspub7",
-        machineStatus: "ON"
-      },
-      {
-        machineName: "pwdcsv-insview8",
-        machineStatus: "OFF"
-      },
-      {
-        machineName: "pwdcsv-inspub8",
-        machineStatus: "ON"
-      },
-      {
-        machineName: "pwdcsv-insview9",
-        machineStatus: "OFF"
-      },
-      {
-        machineName: "pwdcsv-inspub9",
-        machineStatus: "ON"
-      },
-      {
-        machineName: "pwdcsv-insview10",
-        machineStatus: "OFF"
-      }
-    ];
+  machineDetail = null;
+
+  constructor(private _httpClient: HttpClient) {}
+
+  ngOnInit() {
+    this.getMachineList();
   }
 
-  ngOnInit() {}
+  getMachineList() {
+    this._httpClient
+      .get(SERVICE_URL.get_machine)
+      .subscribe((res: MachineModel[]) => {
+        this.data = res;
+      });
+  }
 
-  showModal(): void {
+  showModal(row: any): void {
     $("#myModal").modal("show");
+    this.machineDetail = JSON.parse(JSON.stringify(row));
   }
 
   testApi() {
