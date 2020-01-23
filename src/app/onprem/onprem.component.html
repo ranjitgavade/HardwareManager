@@ -5,7 +5,7 @@
     class="btn btn-primary fa fa-plus"
     (click)="addMachineHandle()"
   ></button> &nbsp;
-  <button
+  <button (click)="checkAllMachineStatus()"
     type="button"
     class="btn btn-primary fa fa-refresh"
   ></button>
@@ -21,11 +21,11 @@
   <d-column [label]="'Status'" [dataKey]="'status'"></d-column>
   <d-column [label]="'hostName'" [dataKey]="'hostName'"></d-column>
   <d-column [label]="'downPeriod'" [dataKey]="'downPeriod'"></d-column>
-  <d-column
+  <!-- <d-column
     [label]="'machineUserName'"
     [dataKey]="'machineUserName'"
   ></d-column>
-  <!-- <d-column [label]="'currentOwner'" [dataKey]="'currentOwner'"></d-column>
+  <d-column [label]="'currentOwner'" [dataKey]="'currentOwner'"></d-column>
   <d-column [label]="'os'" [dataKey]="'os'"></d-column>
   <d-column [label]="'ram'" [dataKey]="'ram'"></d-column>
 
@@ -37,7 +37,7 @@
 
   <d-column [label]="'Refersh'" [dataKey]="''" [width]="'100px'">
     <ng-template #columnTemplate let-row="row">
-      <i class="fa fa-refresh"></i>
+      <i class="fa fa-refresh" (click)="getMachineStatus(row)"></i>
     </ng-template>
   </d-column>
   <d-column [label]="'Details'" [dataKey]="''" [width]="'100px'">

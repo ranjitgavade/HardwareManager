@@ -11,12 +11,8 @@ declare var $: any;
 })
 export class OnpremComponent implements OnInit {
   data: any;
-  session: any;
-
   isUpdateMode = false;
-
   machineDetail : MachineModel;
-
   constructor(private _httpClient: HttpClient) {}
 
   ngOnInit() {
@@ -29,6 +25,7 @@ export class OnpremComponent implements OnInit {
       .get(SERVICE_URL.get_machine)
       .subscribe((res: MachineModel[]) => {
         this.data = res;
+        this.checkAllMachineStatus();
       });
   }
 
@@ -48,12 +45,33 @@ export class OnpremComponent implements OnInit {
   updateMachinedetailsHandle(){
     this._httpClient.post(SERVICE_URL.post_update_machine_details,this.machineDetail).subscribe(res=>{
       console.log("updated");
+      this.getMachineList();
+      $("#myModal").modal("hide");
     })
   }
 
   createMachinedetailsHandle(){
     this._httpClient.post(SERVICE_URL.post_create_machine_details,this.machineDetail).subscribe(res=>{
       console.log("created");
+      this.getMachineList();
+      $("#myModal").modal("hide");
+
+
     })
+  }
+
+  checkAllMachineStatus() {
+    if(this.data.length > 0){
+      this.data.forEach((machine:MachineModel) => {
+       this.getMachineStatus(machine);            
+      });
+
+    }
+  }
+
+  async getMachineStatus(row: MachineModel) {
+   const result: any =  await this._httpClient.get(SERVICE_URL.get_machine_status + row.machineName).toPromise();
+   row.status = result.status;
+
   }
 }
