@@ -1,38 +1,24 @@
-
 <p style="float: right; ">
-  <button
-    type="button"
-    class="btn btn-primary fa fa-plus"
-    (click)="addMachineHandle()"
-  ></button> &nbsp;
-  <button (click)="checkAllMachineStatus()"
-    type="button"
-    class="btn btn-primary fa fa-refresh"
-  ></button>
+  <button type="button" class="btn btn-primary fa fa-plus" (click)="addMachineHandle()"></button> &nbsp;
+  <button (click)="checkAllMachineStatus()" type="button" class="btn btn-primary fa fa-refresh"></button>
 </p>
-<d-datatable
-  #tableRef
-  [gridData]="data"
-  [pageSize]="7"
-  [height]="'40vh'"
-  [gridTitle]="'Machine List'"
->
+<d-datatable #tableRef [gridData]="data" [pageSize]="200" [height]="'100vh'" [gridTitle]="'Machine List'">
   <d-column [label]="'Machine Name'" [dataKey]="'machineName'"></d-column>
-  <d-column [label]="'Status'" [dataKey]="'status'"></d-column>
-  <d-column [label]="'hostName'" [dataKey]="'hostName'"></d-column>
-  <d-column [label]="'downPeriod'" [dataKey]="'downPeriod'"></d-column>
-  <!-- <d-column
-    [label]="'machineUserName'"
+  <d-column [label]="'State'" [dataKey]="'status'" [width]="'100px'"></d-column>
+  <!--<d-column [label]="'hostName'" [dataKey]="'hostName'"></d-column>-->
+  <d-column [label]="'Down Period'" [dataKey]="'downPeriod'" [width]="'100px'"></d-column>
+  <!--<d-column
+    [label]="'User Name'"
     [dataKey]="'machineUserName'"
-  ></d-column>
-  <d-column [label]="'currentOwner'" [dataKey]="'currentOwner'"></d-column>
-  <d-column [label]="'os'" [dataKey]="'os'"></d-column>
-  <d-column [label]="'ram'" [dataKey]="'ram'"></d-column>
+  ></d-column>-->
+  <d-column [label]="'Owner'" [dataKey]="'currentOwner'" [width]="'100px'"></d-column>
+  <d-column [label]="'OS'" [dataKey]="'os'" [width]="'100px'"></d-column>
+  <d-column [label]="'RAM'" [dataKey]="'ram'" [width]="'100px'"></d-column>
 
-  <d-column [label]="'cpuCores'" [dataKey]="'cpuCores'"></d-column>
+  <d-column [label]="'CPU Cores'" [dataKey]="'cpuCores'" [width]="'100px'"></d-column>
 
-  <d-column [label]="'diskSize'" [dataKey]="'diskSize'"></d-column>
-  <d-column [label]="'vsphereClient'" [dataKey]="'vsphereClient'"></d-column>
+  <d-column [label]="'Disk Size'" [dataKey]="'diskSize'" [width]="'100px'"></d-column>
+  <!--<d-column [label]="'vsphereClient'" [dataKey]="'vsphereClient'"></d-column>
   <d-column [label]="'userName'" [dataKey]="'userName'"></d-column> -->
 
   <d-column [label]="'Refersh'" [dataKey]="''" [width]="'100px'">
@@ -48,26 +34,15 @@
 </d-datatable>
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="myModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true"
->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">
           Machine Details
         </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
